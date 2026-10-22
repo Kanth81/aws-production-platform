@@ -55,6 +55,7 @@ data "aws_iam_policy_document" "ecr_push" {
 
     actions = [
       "ecr:BatchCheckLayerAvailability",
+      "ecr:BatchGetImage",
       "ecr:InitiateLayerUpload",
       "ecr:UploadLayerPart",
       "ecr:CompleteLayerUpload",
