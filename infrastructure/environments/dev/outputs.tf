@@ -70,3 +70,10 @@ output "ecr_repository_url" {
   description = "URL for pushing and pulling the sample application image"
   value       = module.ecr.repository_url
 }
+
+
+output "github_actions_ecr_role_arn" {
+  description = "IAM role for GitHub Actions to publish images to ECR"
+  value       = module.github_actions_ecr.role_arn
+}
+
