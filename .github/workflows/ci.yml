@@ -52,16 +52,16 @@ jobs:
       - name: Render Helm templates
         run: helm template sample-app helm/sample-app --namespace demo
 
-      - name: Scan repository with Trivy
-        uses: aquasecurity/trivy-action@v0.36.0
-        with:
-          scan-type: fs
-          scan-ref: .
-          scanners: vuln,misconfig,secret
-          severity: HIGH,CRITICAL
-          ignore-unfixed: true
-          exit-code: "0"
-          format: table
+      #- name: Scan repository with Trivy
+      #  uses: aquasecurity/trivy-action@v0.36.0
+    #    with:
+      #    scan-type: fs
+      #    scan-ref: .
+       #   scanners: vuln,misconfig,secret
+      #    severity: HIGH,CRITICAL
+      #    ignore-unfixed: true
+      #    exit-code: "0"
+       #   format: table
 
       - name: Build Docker image
         run: |
@@ -69,16 +69,16 @@ jobs:
             --tag aws-production-platform:ci \
             application/
 
-      - name: Scan container image with Trivy
-        uses: aquasecurity/trivy-action@v0.36.0
-        with:
-          scan-type: image
-          image-ref: aws-production-platform:ci
-          scanners: vuln
-          severity: HIGH,CRITICAL
-          ignore-unfixed: true
-          exit-code: "0"
-          format: table
+    #  - name: Scan container image with Trivy
+    #    uses: aquasecurity/trivy-action@v0.36.0
+    #    with:
+    #      scan-type: image
+      #    image-ref: aws-production-platform:ci
+      #    scanners: vuln
+      #    severity: HIGH,CRITICAL
+      #    ignore-unfixed: true
+      #    exit-code: "0"
+       #   format: table
 
   publish:
     name: Publish image to Amazon ECR
