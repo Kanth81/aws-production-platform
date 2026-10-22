@@ -46,3 +46,23 @@ module "eks" {
   # Ensure the IAM roles and their policy attachments exist first.
   depends_on = [module.eks_iam]
 }
+
+module "eks_node_group" {
+  source = "../../modules/eks-node-group"
+
+  cluster_name = module.eks.cluster_name
+  node_role_arn = module.eks_iam.node_role_arn
+
+  private_subnet_ids = module.vpc.private_subnet_ids
+
+  instance_types = ["t3.medium"]
+
+  desired_size = 1
+  min_size     = 1
+  max_size     = 2
+
+  depends_on = [module.eks]
+}
+
+
+
