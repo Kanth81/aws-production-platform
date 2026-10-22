@@ -50,7 +50,7 @@ module "eks" {
 module "eks_node_group" {
   source = "../../modules/eks-node-group"
 
-  cluster_name = module.eks.cluster_name
+  cluster_name  = module.eks.cluster_name
   node_role_arn = module.eks_iam.node_role_arn
 
   private_subnet_ids = module.vpc.private_subnet_ids
@@ -66,3 +66,15 @@ module "eks_node_group" {
 
 
 
+
+module "ecr" {
+  source = "../../modules/ecr"
+
+  repository_name = "aws-production-platform/sample-app"
+
+  tags = {
+    Owner       = "platform-engineering"
+    CostCentre  = "portfolio"
+    Criticality = "non-production"
+  }
+}

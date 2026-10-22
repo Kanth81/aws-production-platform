@@ -1,10 +1,10 @@
 replicaCount: 2
 
 image:
-  repository: nginxinc/nginx-unprivileged
-  tag: stable-alpine
+  repository: 653174262841.dkr.ecr.eu-west-2.amazonaws.com/aws-production-platform/sample-app
+  tag: "v1.0.0"
   pullPolicy: IfNotPresent
-
+  
 service:
   type: ClusterIP
   port: 8080

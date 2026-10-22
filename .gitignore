@@ -6,6 +6,13 @@
 terraform.tfvars
 *.auto.tfvars
 
+# Terraform variable files and plan outputs
+*.tfvars
+*.tfvars.json
+*.plan
+crash.log
+crash.*.log
+
 # Credentials and secrets
 .env
 .env.*
