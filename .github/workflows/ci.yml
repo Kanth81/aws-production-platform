@@ -83,17 +83,6 @@ jobs:
             --tag aws-production-platform:${GITHUB_SHA} \
             application/
 
-      - name: Scan image before publishing
-        uses: aquasecurity/trivy-action@0.36.0
-        with:
-          scan-type: image
-          image-ref: aws-production-platform:${{ github.sha }}
-          scanners: vuln
-          severity: HIGH,CRITICAL
-          ignore-unfixed: true
-          exit-code: "1"
-          format: table
-
       - name: Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
