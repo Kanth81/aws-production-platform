@@ -60,3 +60,13 @@ output "eks_node_group_name" {
 output "eks_node_group_status" {
   value = module.eks_node_group.node_group_status
 }
+
+output "ecr_repository_name" {
+  description = "ECR repository for the sample application"
+  value       = module.ecr.repository_name
+}
+
+output "ecr_repository_url" {
+  description = "URL for pushing and pulling the sample application image"
+  value       = module.ecr.repository_url
+}
