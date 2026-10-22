@@ -78,3 +78,23 @@ module "ecr" {
     Criticality = "non-production"
   }
 }
+
+
+module "github_actions_ecr" {
+  source = "../../modules/github-actions-ecr"
+
+  repository_owner    = "Kanth81"
+  repository_name     = "aws-production-platform"
+  repository_owner_id = "44643502"
+  repository_id       = "1424831838"
+  branch              = "main"
+
+  ecr_repository_arn = module.ecr.repository_arn
+
+  tags = {
+    Owner       = "platform-engineering"
+    CostCentre  = "portfolio"
+    Criticality = "non-production"
+  }
+}
+
