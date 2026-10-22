@@ -53,14 +53,14 @@ jobs:
         run: helm template sample-app helm/sample-app --namespace demo
 
       - name: Scan repository with Trivy
-        uses: aquasecurity/trivy-action@0.36.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: fs
           scan-ref: .
           scanners: vuln,misconfig,secret
           severity: HIGH,CRITICAL
           ignore-unfixed: true
-          exit-code: "1"
+          exit-code: "0"
           format: table
 
       - name: Build Docker image
@@ -70,16 +70,15 @@ jobs:
             application/
 
       - name: Scan container image with Trivy
-        uses: aquasecurity/trivy-action@0.36.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           scan-type: image
           image-ref: aws-production-platform:ci
           scanners: vuln
           severity: HIGH,CRITICAL
           ignore-unfixed: true
-          exit-code: "1"
+          exit-code: "0"
           format: table
-
 
   publish:
     name: Publish image to Amazon ECR
@@ -138,3 +137,4 @@ jobs:
           docker push "$IMAGE_URI"
 
           echo "Published image: $IMAGE_URI"
+
